@@ -1,0 +1,76 @@
+<?php
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/**
+ * wgTeams module for xoops
+ *
+ * @copyright       The XOOPS Project (https://xoops.org)
+ * @license         GPL 2.0 or later
+ * @package         wgteams
+ * @since           1.0
+ * @min_xoops       2.5.7
+ * @author          Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @version         $Id: 1.0 header.php 1 Sun 2015/12/27 23:18:01Z Goffy - Wedega $
+ */
+
+use XoopsModules\Wgteams;
+
+include dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
+$thisPath = dirname(__DIR__);
+require_once $thisPath . '/include/common.php';
+$pathIcon16      = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
+$pathIcon32      = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
+$pathModuleAdmin = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
+//
+$pathModIcon16 = $GLOBALS['xoopsModule']->getInfo('modicons16');
+$pathModIcon32 = $GLOBALS['xoopsModule']->getInfo('modicons32');
+// Get instance of module
+$wgteams           = Wgteams\Helper::getInstance();
+$db = \XoopsDatabaseFactory::getDatabaseConnection();
+$teamsHandler      = new Wgteams\TeamsHandler($db);//$wgteams->getHandler('teams');
+$membersHandler    = new Wgteams\MembersHandler($db);//$wgteams->getHandler('members');
+$relationsHandler  = new Wgteams\RelationsHandler($db);//$wgteams->getHandler('relations');
+$infofieldsHandler = new Wgteams\InfofieldsHandler($db);//$wgteams->getHandler('infofields');
+
+//
+$myts = \MyTextSanitizer::getInstance();
+if (!isset($xoopsTpl) || !is_object($xoopsTpl)) {
+    require_once XOOPS_ROOT_PATH . '/class/template.php';
+    $xoopsTpl = new \XoopsTpl();
+}
+// System icons path
+$xoopsTpl->assign('pathIcon16', $pathIcon16);
+$xoopsTpl->assign('pathIcon32', $pathIcon32);
+// Local icons path
+$xoopsTpl->assign('pathModIcon16', $pathModIcon16);
+$xoopsTpl->assign('pathModIcon32', $pathModIcon32);
+
+//Load languages
+$wgteams->loadLanguage('admin');
+$wgteams->loadLanguage('modinfo');
+// Local admin menu class
+//if (file_exists($GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php'))) {
+//    require_once $GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php');
+//} else {
+//    redirect_header('../../../admin.php', 5, _AM_MODULEADMIN_MISSING, false);
+//}
+
+/** @var Xmf\Module\Admin $adminObject */
+$adminObject = \Xmf\Module\Admin::getInstance();
+
+xoops_cp_header();
+//$adminObject = \Xmf\Module\Admin::getInstance();
+
+//load stylesheets and jquery for sortable
+$GLOBALS['xoTheme']->addStylesheet(WGTEAMS_URL . '/assets/css/admin/style.css');
+$GLOBALS['xoTheme']->addScript(WGTEAMS_URL . '/assets/js/jquery.js');
+$GLOBALS['xoTheme']->addScript(WGTEAMS_URL . '/assets/js/jquery-ui.js');
+//$GLOBALS['xoTheme']->addScript(WGTEAMS_URL . '/assets/js/sortable.js');

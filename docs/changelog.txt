@@ -1,0 +1,85 @@
+==============================================================
+1.08 RC4              2016/11/25
+==============================================================
+- added class truncateHTML (Mamba, Lucio/goffy) 
+
+==============================================================
+1.08 RC3              2016/10/09
+==============================================================
+- fixed bug: drag&drop ordering of teams (goffy) 
+
+==============================================================
+1.08 RC1              2016/08/19
+==============================================================
+- added drag&drop ordering of teams/relations (goffy)
+- fixed bug: deleting relations when deleting team (goffy) 
+- fixed bug: deleting relations when deleting member (goffy) 
+
+==============================================================
+1.07 RC3               2016/08/09
+==============================================================
+- fixed multiple defines of XOOPS_ICONS32_PATH/XOOPS_ICONS32_URL (goffy)
+
+==============================================================
+1.07 RC2               NOT RELEASED
+==============================================================
+- cosmetics (mamba)
+- Unnecessary double quotes (mamba)
+- reference mismatch (mamba)
+- Hardening to type safe (mamba)
+- compatibility with parent functions (mamba)
+- phpDocs fixes (mamba)
+- '<br />'' to '<br>' (mamba)
+- standardization on getInstance function (mamba)
+- replace 'or' with '||' (mamba)
+- added definition for _AM_WGTEAMS_MAX_FILESIZE (mamba)
+- Missing semicolon (mamba)
+- Redundant measure unit (mamba)
+
+- fixed bug when using html code (goffy)
+
+==============================================================
+1.07                2016/03/16
+==============================================================
+- fixed bug in member_list.tpl (goffy)
+
+==============================================================
+1.06                2016/02/23
+==============================================================
+- added config 'showbreadcrumbs' (goffy)
+- cosmeticts (mamba)
+
+==============================================================
+1.05                2016/01/31
+==============================================================
+- added config 'show labels' (goffy)
+
+==============================================================
+1.04                2016/01/31
+==============================================================
+- fixed bug with config wgteams_img_maxsize/wgteams_img_mimetypes (goffy)
+- added label with wgteams_img_maxsize to form teams/members (goffy)
+- fixed bug with none show email (goffy)
+- added quick link to set team on or offline (goffy)
+
+==============================================================
+1.03 Beta 1           2016/01/21
+==============================================================
+- added editor selection for textboxes (mamba/goffy)
+- added config for image size (goffy)
+- added deleting image of member when deleting the member (mamba/goffy)
+- added deleting image of team when deleting the team (mamba/goffy)
+- changed tablename persons to members (mamba/goffy)
+- added block for team list (goffy)
+- added config for type of index page (goffy)
+
+==============================================================
+1.02                    2016/01/21
+==============================================================
+- fix wrong upload path for team image (mamba/goffy)
+- fixed various bugs
+
+==============================================================
+1.01                    2015/12/27
+==============================================================
+- Original release wgteams (Goffy - Wedega.com)

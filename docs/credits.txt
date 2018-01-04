@@ -1,0 +1,13 @@
+Read Me First
+=============
+
+This module was originally developed by Goffy (www.wedega.com).
+
+Contributors: 
+-------------
+- Mamba (https://xoops.org)
+
+
+Special thanks to TDM Team.
+This module was created with TDMCreate from TDM Team
+
