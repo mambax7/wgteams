@@ -22,7 +22,7 @@
 
 use XoopsModules\Wgteams;
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 require_once __DIR__ . '/preloads/autoloader.php';
 //
@@ -141,7 +141,6 @@ if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['d
         $modversion['sub'][$s]['name'] = $teamsAll[$i]->getVar('team_name');
         $modversion['sub'][$s]['url']  = 'index.php?team_id=' . $teamsAll[$i]->getVar('team_id');
     }
-
 }
 // ------------------- Blocks ------------------- //
 $modversion['blocks'][] = [

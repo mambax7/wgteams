@@ -110,7 +110,7 @@ class Persons extends \XoopsObject
         $imageSelect = new \XoopsFormSelect(_AM_WGTEAMS_FORM_IMAGE_EXIST, 'person_image', $personImage, 5);
         $imageArray  = \XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
         foreach ($imageArray as $image) {
-            $imageSelect->addOption("{$image}", $image);
+            $imageSelect->addOption((string)($image), $image);
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"image2\", \"person_image\", \"" . $imageDirectory . '", "", "' . XOOPS_URL . "\")'");
         $imageTray->addElement($imageSelect, false);

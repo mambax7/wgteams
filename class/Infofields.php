@@ -1,4 +1,5 @@
 <?php namespace XoopsModules\Wgteams;
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -22,7 +23,7 @@
 
 use XoopsModules\Wgteams;
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class WgteamsInfofields

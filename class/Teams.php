@@ -23,7 +23,7 @@
 
 use XoopsModules\Wgteams;
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object Teams
@@ -114,7 +114,7 @@ class Teams extends \XoopsObject
         $imageSelect = new \XoopsFormSelect(_AM_WGTEAMS_FORM_IMAGE_EXIST, 'team_image', $teamImage, 5);
         $imageArray  = \XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
         foreach ($imageArray as $image) {
-            $imageSelect->addOption("{$image}", $image);
+            $imageSelect->addOption((string)($image), $image);
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"image2\", \"team_image\", \"" . $imageDirectory . '", "", "' . XOOPS_URL . "\")'");
         $imageTray->addElement($imageSelect, false);
@@ -217,5 +217,3 @@ class Teams extends \XoopsObject
         return $ret;
     }
 }
-
-

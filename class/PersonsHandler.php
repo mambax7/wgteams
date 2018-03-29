@@ -100,7 +100,7 @@ class PersonsHandler extends \XoopsPersistableObjectHandler
      *
      * @return bool FALSE if failed, TRUE if already present and unchanged or successful
      */
-    public function &insert(XoopsObject $field, $force = false)
+    public function &insert(\XoopsObject $field, $force = false)
     {
         if (!parent::insert($field, $force)) {
             return false;

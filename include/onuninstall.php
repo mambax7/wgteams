@@ -47,7 +47,7 @@ function xoops_module_uninstall_wgteams(\XoopsModule $module)
 
     $old_directories = [$GLOBALS['xoops']->path("uploads/{$moduleDirName}")];
     foreach ($old_directories as $old_dir) {
-        $dirInfo = new SplFileInfo($old_dir);
+        $dirInfo = new \SplFileInfo($old_dir);
         if ($dirInfo->isDir()) {
             // The directory exists so delete it
             if (false === $utility::rrmdir($old_dir)) {
@@ -73,6 +73,4 @@ function xoops_module_uninstall_wgteams(\XoopsModule $module)
 
     return $success;
     //------------ END  ----------------
-
 }
-
