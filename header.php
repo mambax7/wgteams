@@ -37,7 +37,7 @@ $infofieldsHandler = new Wgteams\InfofieldsHandler($db);
 
 // Permission
 require_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
-$gpermHandler = xoops_getHandler('groupperm');
+$grouppermHandler = xoops_getHandler('groupperm');
 if (is_object($xoopsUser)) {
     $groups = $xoopsUser->getGroups();
 } else {

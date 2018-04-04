@@ -95,8 +95,9 @@ class PersonsHandler extends \XoopsPersistableObjectHandler
     /**
      * insert a new field in the database
      *
-     * @param XoopsObject  $field reference to the {@link TDMCreateFields} object
-     * @param bool   $force
+     * @param \XoopsObject $field reference to the {@link TDMCreateFields}
+     *                            object
+     * @param bool         $force
      *
      * @return bool FALSE if failed, TRUE if already present and unchanged or successful
      */

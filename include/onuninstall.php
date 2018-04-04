@@ -8,6 +8,8 @@
  * @link            https://xoops.org XOOPS
  */
 
+use XoopsModules\Wgteams;
+
 /**
  * Prepares system prior to attempting to uninstall module
  * @param XoopsModule $module {@link XoopsModule}
@@ -32,14 +34,15 @@ function xoops_module_uninstall_wgteams(\XoopsModule $module)
 {
     //    return true;
 
-    $moduleDirName  = basename(dirname(__DIR__));
-    $xsitemapHelper = \Xmf\Module\Helper::getHelper($moduleDirName);
+    $moduleDirName      = basename(dirname(__DIR__));
+    $moduleDirNameUpper = strtoupper($moduleDirName);
+    $helper             = Wgteams\Helper::getInstance();
 
-    /** @var whteams\Utility $utility */
-    $utility = ucfirst($moduleDirName) . 'Utility';
+    /** @var Wgteams\Utility $utility */
+    $utility = new Wgteams\Utility();
 
     $success = true;
-    $xsitemapHelper->loadLanguage('admin');
+    $helper->loadLanguage('admin');
 
     //------------------------------------------------------------------
     // Remove uploads folder (and all subfolders) if they exist
@@ -51,7 +54,7 @@ function xoops_module_uninstall_wgteams(\XoopsModule $module)
         if ($dirInfo->isDir()) {
             // The directory exists so delete it
             if (false === $utility::rrmdir($old_dir)) {
-                $module->setErrors(sprintf(_AM_wgteamsX_ERROR_BAD_DEL_PATH, $old_dir));
+                $module->setErrors(sprintf(constant('CO_' . $moduleDirNameUpper . '_ERROR_BAD_DEL_PATH'), $old_dir));
                 $success = false;
             }
         }
