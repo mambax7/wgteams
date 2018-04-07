@@ -19,6 +19,9 @@
  * @author          Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
  * @version         $Id: 1.0 common.php 1 Sun 2015/12/27 23:18:02Z Goffy - Wedega $
  */
+
+use Xmf\Request;
+
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 if (!defined('WGTEAMS_PATH')) {
     if (!defined('XOOPS_ICONS32_PATH')) {
@@ -43,6 +46,5 @@ if (!defined('WGTEAMS_PATH')) {
 $copyright = "<a href='http://wedega.com' title='XOOPS on Wedega' target='_blank'>
                      <img src='" . $local_logo . "' alt='XOOPS on Wedega' style='height:40px;'></a>";
 
-require_once XOOPS_ROOT_PATH . '/class/xoopsrequest.php';
 require_once WGTEAMS_PATH . '/class/helper.php';
 require_once WGTEAMS_PATH . '/include/functions.php';
