@@ -26,7 +26,7 @@ use XoopsModules\Wgteams;
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
- * Class Object Handler Teams
+ * Class TeamsHandler
  */
 class TeamsHandler extends \XoopsPersistableObjectHandler
 {
@@ -38,9 +38,9 @@ class TeamsHandler extends \XoopsPersistableObjectHandler
     /**
      * Constructor
      *
-     * @param string $db
+     * @param \XoopsDatabase  $db
      */
-    public function __construct($db)
+    public function __construct(\XoopsDatabase $db)
     {
         parent::__construct($db, 'wgteams_teams', Teams::class, 'team_id', 'team_name');
         /** @var \XoopsModules\Wgteams\Helper $this->helper */

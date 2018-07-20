@@ -27,7 +27,7 @@ defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 
 /**
- * Class Object Handler Members
+ * Class MembersHandler
  */
 class MembersHandler extends \XoopsPersistableObjectHandler
 {
@@ -39,9 +39,9 @@ class MembersHandler extends \XoopsPersistableObjectHandler
     /**
      * Constructor
      *
-     * @param string $db
+     * @param \XoopsDatabase $db
      */
-    public function __construct($db)
+    public function __construct(\XoopsDatabase $db)
     {
         parent::__construct($db, 'wgteams_members', Members::class, 'member_id', 'member_firstname');
         /** @var \XoopsModules\Wgteams\Helper $this->helper */

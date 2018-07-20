@@ -46,5 +46,4 @@ if (!defined('WGTEAMS_PATH')) {
 $copyright = "<a href='https://wedega.com' title='XOOPS on Wedega' target='_blank'>
                      <img src='" . $local_logo . "' alt='XOOPS on Wedega' style='height:40px;'></a>";
 
-//require_once WGTEAMS_PATH . '/class/helper.php';
 require_once WGTEAMS_PATH . '/include/functions.php';

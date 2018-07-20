@@ -57,12 +57,6 @@ $xoopsTpl->assign('pathModIcon32', $pathModIcon32);
 //Load languages
 $helper->loadLanguage('admin');
 $helper->loadLanguage('modinfo');
-// Local admin menu class
-//if (file_exists($GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php'))) {
-//    require_once $GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php');
-//} else {
-//    redirect_header('../../../admin.php', 5, _AM_MODULEADMIN_MISSING, false);
-//}
 
 /** @var Xmf\Module\Admin $adminObject */
 $adminObject = \Xmf\Module\Admin::getInstance();

@@ -65,7 +65,7 @@ $modversion = [
     //About
     'demo_site_url'       => 'https://xoops.wedega.com',
     'demo_site_name'      => 'XOOPS on Wedega',
-    'support_url'         => '',
+    'support_url'         => 'https://myxoops.org',
     'support_name'        => '',
     'module_website_url'  => '',
     'module_website_name' => '',

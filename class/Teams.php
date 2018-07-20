@@ -1,4 +1,5 @@
-<?php
+<?php namespace XoopsModules\Wgteams;
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -22,15 +23,15 @@
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
- * Class Object Teams
+ * Class Teams
  */
 
-class Teams extends XoopsObject
+class Teams extends \XoopsObject
 {
     /**
     * @var mixed
     */
-    private $wgteams = null;
+    private $helper = null;
 
     /**
      * Constructor
@@ -39,7 +40,7 @@ class Teams extends XoopsObject
      */
     public function __construct()
     {
-        $this->wgteams = Helper::getInstance();
+        $this->helper = Helper::getInstance();
         $this->initVar('team_id', XOBJ_DTYPE_INT);
         $this->initVar('team_name', XOBJ_DTYPE_TXTBOX);
         $this->initVar('team_descr', XOBJ_DTYPE_TXTAREA);
@@ -180,7 +181,7 @@ class Teams extends XoopsObject
      */
     public function getValuesTeams($keys = null, $format = null, $maxDepth = null)
     {
-		$wgteams              = Helper::getInstance();
+		$helper              = Helper::getInstance();
 		$ret                  = $this->getValues($keys, $format, $maxDepth);
         $ret['id']            = $this->getVar('team_id');
         $ret['name']          = strip_tags($this->getVar('team_name'));
@@ -212,132 +213,5 @@ class Teams extends XoopsObject
         }
 
         return $ret;
-    }
-}
-
-/**
- * Class Object Handler Teams
- */
-
-class TeamsHandler extends XoopsPersistableObjectHandler
-{
-    /**
-    * @var mixed
-    */
-    private $wgteams = null;
-
-    /**
-     * Constructor
-     *
-     * @param string $db
-     */
-    public function __construct(&$db)
-    {
-        parent::__construct($db, 'wgteams_teams', 'Teams', 'team_id', 'team_name');
-        $this->wgteams = Helper::getInstance();
-    }
-
-    /**
-     * @param bool $isNew
-     *
-     * @return XoopsObject
-     */
-    public function create($isNew = true)
-    {
-        $temp = parent::create($isNew);
-        return $temp;
-    }
-
-    /**
-     * retrieve a field
-     *
-     * @param  int $i field id
-     * @param null $fields
-     * @return mixed reference to the <a href='psi_element://TDMCreateFields'>TDMCreateFields</a> object
-     *                object
-     */
-    public function get($i = null, $fields = null)
-    {
-        $temp = parent::get($i, $fields);
-        return $temp;
-    }
-
-    /**
-     * get inserted id
-     *
-     * @param null
-     * @return integer reference to the {@link TDMCreateFields} object
-     */
-    public function getInsertId()
-    {
-        $temp =  $this->db->getInsertId();
-        return $temp;
-    }
-
-    /**
-     * get IDs of objects matching a condition
-     *
-     * @param  CriteriaElement $criteria {@link CriteriaElement} to match
-     * @return array  of object IDs
-     */
-    public function &getIds(CriteriaElement $criteria = null)
-    {
-        $temp =&  parent::getIds($criteria);
-        return $temp;
-    }
-
-    /**
-     * insert a new field in the database
-     *
-     * @param XoopsObject $field reference to the {@link TDMCreateFields} object
-     * @param bool   $force
-     *
-     * @return bool FALSE if failed, TRUE if already present and unchanged or successful
-     */
-    public function insert(XoopsObject  $field, $force = false)
-    {
-        if (!parent::insert($field, $force)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * Get Count Teams
-     * @param int    $start
-     * @param int    $limit
-     * @param string $sort
-     * @param string $order
-     * @return int
-     */
-    public function getCountTeams($start = 0, $limit = 0, $sort = 'team_id', $order = 'ASC')
-    {
-        $criteria = new CriteriaCompo();
-        $criteria->setSort($sort);
-        $criteria->setOrder($order);
-        $criteria->setStart($start);
-        $criteria->setLimit($limit);
-
-        return $this->getCount($criteria);
-    }
-
-    /**
-     * Get All Teams
-     * @param int    $start
-     * @param int    $limit
-     * @param string $sort
-     * @param string $order
-     * @return array
-     */
-    public function getAllTeams($start = 0, $limit = 0, $sort = 'team_weight ASC, team_id', $order = 'ASC')
-    {
-        $criteria = new CriteriaCompo();
-        $criteria->setSort($sort);
-        $criteria->setOrder($order);
-        $criteria->setStart($start);
-        $criteria->setLimit($limit);
-
-        return $this->getAll($criteria);
     }
 }

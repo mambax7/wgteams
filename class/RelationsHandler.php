@@ -27,7 +27,7 @@ defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 
 /**
- * Class Object Handler Relations
+ * Class RelationsHandler
  */
 class RelationsHandler extends \XoopsPersistableObjectHandler
 {
@@ -39,9 +39,9 @@ class RelationsHandler extends \XoopsPersistableObjectHandler
     /**
      * Constructor
      *
-     * @param string $db
+     * @param \XoopsDatabase $db
      */
-    public function __construct($db)
+    public function __construct(\XoopsDatabase $db)
     {
         parent::__construct($db, 'wgteams_relations', Relations::class, 'rel_id', 'rel_team_id');
         /** @var \XoopsModules\Wgteams\Helper $this->helper */

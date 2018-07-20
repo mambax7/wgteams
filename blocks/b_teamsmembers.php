@@ -68,7 +68,6 @@ function b_wgteams_teamsmembers_show($options)
  */
 function b_wgteams_teamsmembers_edit($options)
 {
-    require_once XOOPS_ROOT_PATH . '/modules/wgteams/class/teams.php';
     /** @var Wgteams\Helper $helper */
     $helper    = Wgteams\Helper::getInstance();
     $teamsHandler = $helper->getHandler('Teams');

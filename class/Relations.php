@@ -1,4 +1,5 @@
-<?php
+<?php namespace XoopsModules\Wgteams;
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -25,12 +26,12 @@ defined('XOOPS_ROOT_PATH') || exit('Restricted access');
  * Class Object Relations
  */
 
-class Relations extends XoopsObject
+class Relations extends \XoopsObject
 {
     /**
     * @var mixed
     */
-    private $wgteams = null;
+    private $helper = null;
 
     /**
      * Constructor
@@ -39,7 +40,7 @@ class Relations extends XoopsObject
      */
     public function __construct()
     {
-        $this->wgteams = Helper::getInstance();
+        $this->helper = Wgteams\Helper::getInstance();
         $this->initVar('rel_id', XOBJ_DTYPE_INT);
         $this->initVar('rel_team_id', XOBJ_DTYPE_INT);
         $this->initVar('rel_member_id', XOBJ_DTYPE_INT);
@@ -228,7 +229,7 @@ class Relations extends XoopsObject
      */
     public function getValuesRelations($keys = null, $format = null, $maxDepth = null)
     {
-        $wgteams             = Helper::getInstance();
+        $helper              = Helper::getInstance();
 		$ret                 = $this->getValues($keys, $format, $maxDepth);
         $ret['id']           = $this->getVar('rel_id');
         $ret['team_id']      = $this->getVar('rel_team_id');
@@ -267,145 +268,5 @@ class Relations extends XoopsObject
         }
 
         return $ret;
-    }
-}
-
-/**
- * Class Object Handler Relations
- */
-
-class RelationsHandler extends XoopsPersistableObjectHandler
-{
-    /**
-    * @var mixed
-    */
-    private $wgteams = null;
-
-    /**
-     * Constructor
-     *
-     * @param \XoopsDatabase $db
-     */
-    public function __construct(XoopsDatabase $db)
-    {
-        parent::__construct($db, 'wgteams_relations', 'wgteamsrelations', 'rel_id', 'rel_team_id');
-        $this->wgteams = Helper::getInstance();
-    }
-
-    /**
-     * @param bool $isNew
-     *
-     * @return XoopsObject
-     */
-    public function create($isNew = true)
-    {
-        $temp = parent::create($isNew);
-        return $temp; 
-    }
-
-    /**
-     * retrieve a field
-     *
-     * @param  int $i field id
-     * @param null $fields
-     * @return mixed reference to the <a href='psi_element://TDMCreateFields'>TDMCreateFields</a> object
-     *                object
-     */
-    public function get($i = null, $fields = null)
-    {
-        $temp =  parent::get($i, $fields);
-        return $temp;
-    }
-
-    /**
-     * get inserted id
-     *
-     * @param null
-     * @return integer reference to the {@link TDMCreateFields} object
-     */
-    public function getInsertId()
-    {
-        $temp =  $this->db->getInsertId();
-        return $temp;
-    }
-
-    /**
-     * get IDs of objects matching a condition
-     *
-     * @param  CriteriaElement $criteria {@link CriteriaElement} to match
-     * @return array  of object IDs
-     */
-    public function &getIds(CriteriaElement $criteria = null)
-    {
-        $temp =&  parent::getIds($criteria);
-        return $temp;
-    }
-
-    /**
-     * insert a new field in the database
-     *
-     * @param XoopsObject $field reference to the {@link TDMCreateFields} object
-     * @param bool   $force
-     *
-     * @return bool FALSE if failed, TRUE if already present and unchanged or successful
-     */
-    public function insert(XoopsObject $field, $force = false)
-    {
-        if (!parent::insert($field, $force)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * Get Count Relations
-     * @param int    $start
-     * @param int    $limit
-     * @param string $sort
-     * @param string $order
-     * @return int
-     */
-    public function getCountRelations($start = 0, $limit = 0, $sort = 'rel_id', $order = 'ASC')
-    {
-        $criteria = new CriteriaCompo();
-        $criteria->setSort($sort);
-        $criteria->setOrder($order);
-        $criteria->setStart($start);
-        $criteria->setLimit($limit);
-
-        return $this->getCount($criteria);
-    }
-    
-    /**
-     * Get Count Relations per Team
-     * @param int    $team_id
-     * @return int
-     */
-    public function getCountRelationsTeam($team_id = 0)
-    {
-        $criteria = new CriteriaCompo();
-        $criteria->add(new Criteria('rel_team_id', $team_id));
-
-        return $this->getCount($criteria);
-    }
-
-    /**
-     * Get All Relations
-     * @param int    $start
-     * @param int    $limit
-     * @param string $sort
-     * @param string $order
-     * @return array
-     */
-    public function getAllRelations($start = 0, $limit = 0, $sort = 'rel_team_id ASC, rel_weight ASC, rel_id', $order = 'ASC')
-    {
-        $criteria = new CriteriaCompo();
-        $criteria->setSort($sort);
-        $criteria->setOrder($order);
-        $criteria->setStart($start);
-        $criteria->setLimit($limit);
-
-        return $this->getAll($criteria);
     }
 }
