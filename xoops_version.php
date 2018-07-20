@@ -29,8 +29,10 @@ require_once __DIR__ . '/preloads/autoloader.php';
 //$dirname = basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion = [
-    'name'                => _MI_WGTEAMS_NAME,
     'version'             => '1.09',
+    'module_status'       => 'Beta 1',    
+    'release'             => '2018/07/19',
+    'name'                => _MI_WGTEAMS_NAME,
     'description'         => _MI_WGTEAMS_DESC,
     'author'              => 'Goffy - Wedega.com',
     'author_mail'         => 'webmaster@wedega.com',
@@ -67,8 +69,6 @@ $modversion = [
     'support_name'        => '',
     'module_website_url'  => '',
     'module_website_name' => '',
-    'release'             => '2018/07/19',
-    'module_status'       => 'Beta 1',
     // Admin system menu
     'system_menu'         => 1,
     // Admin things
