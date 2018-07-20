@@ -20,7 +20,7 @@
         <{/if}>
             </div>
 			
-		<{if $member.rel_nb_cols != 0 && $smarty.foreach.fe_members.iteration % $member.rel_nb_cols == 0 && $smarty.foreach.fe_members.iteration < $smarty.foreach.fe_members.total}>
+		<{if $smarty.foreach.fe_members.iteration % $member.rel_nb_cols == 0 && $smarty.foreach.fe_members.iteration < $smarty.foreach.fe_members.total}>
 			</div>
 			<div class="member_list row">
 		<{/if}>

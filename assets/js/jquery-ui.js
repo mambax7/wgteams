@@ -90,7 +90,7 @@ $.widget = function( name, base, prototype ) {
 
 		// Allow instantiation without "new" keyword
 		if ( !this._createWidget ) {
-			return new \Constructor( options, element );
+			return new constructor( options, element );
 		}
 
 		// Allow instantiation without initializing for simple inheritance
@@ -457,7 +457,7 @@ $.Widget.prototype = {
 
 			// We are doing this to create a new jQuery object because the _removeClass() call
 			// on the next line is going to destroy the reference to the current elements being
-			// tracked. We need to save a copy of this collection so that we can add the new \Classes
+			// tracked. We need to save a copy of this collection so that we can add the new classes
 			// below.
 			elements = $( currentElements.get() );
 			this._removeClass( currentElements, classKey );
@@ -5292,7 +5292,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			}
 		} else {
 
-			// When entering a new \Container, we will find the item with the least distance and
+			// When entering a new container, we will find the item with the least distance and
 			// append our item near it
 			dist = 10000;
 			itemWithLeastDistance = null;

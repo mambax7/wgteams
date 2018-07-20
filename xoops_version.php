@@ -16,7 +16,7 @@
  * @package         wgteams
  * @since           1.0
  * @min_xoops       2.5.7
- * @author          Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author          Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  * @version         $Id: 1.0 xoops_version.php 1 Sun 2015/12/27 23:18:02Z Goffy - Wedega $
  */
 
@@ -30,11 +30,11 @@ require_once __DIR__ . '/preloads/autoloader.php';
 // ------------------- Informations ------------------- //
 $modversion = [
     'name'                => _MI_WGTEAMS_NAME,
-    'version'             => '1.08',
+    'version'             => '1.09',
     'description'         => _MI_WGTEAMS_DESC,
     'author'              => 'Goffy - Wedega.com',
     'author_mail'         => 'webmaster@wedega.com',
-    'author_website_url'  => 'http://wedega.com',
+    'author_website_url'  => 'https://wedega.com',
     'author_website_name' => 'XOOPS on Wedega',
     'credits'             => 'Goffy - Wedega',
     'license'             => 'GPL 2.0 or later',
@@ -61,14 +61,14 @@ $modversion = [
     'modicons16'          => 'assets/icons/16',
     'modicons32'          => 'assets/icons/32',
     //About
-    'demo_site_url'       => 'http://xoops.wedega.com',
+    'demo_site_url'       => 'https://xoops.wedega.com',
     'demo_site_name'      => 'XOOPS on Wedega',
     'support_url'         => '',
     'support_name'        => '',
     'module_website_url'  => '',
     'module_website_name' => '',
-    'release'             => '2016/08/19',
-    'module_status'       => 'RC 4',
+    'release'             => '2018/07/19',
+    'module_status'       => 'Beta 1',
     // Admin system menu
     'system_menu'         => 1,
     // Admin things

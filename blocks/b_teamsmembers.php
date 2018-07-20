@@ -16,7 +16,7 @@
  * @package         wgteams
  * @since           1.0
  * @min_xoops       2.5.7
- * @author          Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author          Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  * @version         $Id: 1.0 teams.php 1 Sun 2015/12/27 23:18:00Z Goffy - Wedega $
  */
 
@@ -86,7 +86,7 @@ function b_wgteams_teamsmembers_edit($options)
     $form .= "<select name='options[]' size='5'>";
     foreach (array_keys($teamsAll) as $i) {
         $team_id = $teamsAll[$i]->getVar('team_id');
-        $form    .= "<option value='" . $team_id . "' " . (false === array_search($team_id, $options) ? '' : "selected='selected'") . '>' . $teamsAll[$i]->getVar('team_name') . '</option>';
+        $form    .= "<option value='" . $team_id . "' " . (false === array_search($team_id, $options) ? '' : 'selected') . '>' . $teamsAll[$i]->getVar('team_name') . '</option>';
     }
     $form .= '</select>';
 

@@ -18,7 +18,7 @@
                             <{include file='db:wgteams_member_default.tpl' member=$member}>
                         <{/if}>
                     </td>
-                    <{if $member.rel_nb_cols != 0 && $member.rel_counter % $member.rel_nb_cols == 0}>
+                    <{if $member.rel_counter % $member.rel_nb_cols == 0}>
                         </tr><tr>
                     <{/if}>
                 <{/foreach}>
