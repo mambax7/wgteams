@@ -27,7 +27,7 @@ defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 
 /**
- * Class WgteamsInfofieldsHandler
+ * Class InfofieldsHandler
  */
 class InfofieldsHandler extends \XoopsPersistableObjectHandler
 {

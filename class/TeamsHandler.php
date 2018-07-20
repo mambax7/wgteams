@@ -26,7 +26,7 @@ use XoopsModules\Wgteams;
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
- * Class Object Handler WgteamsTeams
+ * Class Object Handler Teams
  */
 class TeamsHandler extends \XoopsPersistableObjectHandler
 {

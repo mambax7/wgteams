@@ -22,10 +22,10 @@
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
- * Class Object WgteamsRelations
+ * Class Object Relations
  */
 
-class WgteamsRelations extends XoopsObject
+class Relations extends XoopsObject
 {
     /**
     * @var mixed
@@ -39,7 +39,7 @@ class WgteamsRelations extends XoopsObject
      */
     public function __construct()
     {
-        $this->wgteams = WgteamsHelper::getInstance();
+        $this->wgteams = Helper::getInstance();
         $this->initVar('rel_id', XOBJ_DTYPE_INT);
         $this->initVar('rel_team_id', XOBJ_DTYPE_INT);
         $this->initVar('rel_member_id', XOBJ_DTYPE_INT);
@@ -228,7 +228,7 @@ class WgteamsRelations extends XoopsObject
      */
     public function getValuesRelations($keys = null, $format = null, $maxDepth = null)
     {
-        $wgteams             = WgteamsHelper::getInstance();
+        $wgteams             = Helper::getInstance();
 		$ret                 = $this->getValues($keys, $format, $maxDepth);
         $ret['id']           = $this->getVar('rel_id');
         $ret['team_id']      = $this->getVar('rel_team_id');
@@ -271,10 +271,10 @@ class WgteamsRelations extends XoopsObject
 }
 
 /**
- * Class Object Handler WgteamsRelations
+ * Class Object Handler Relations
  */
 
-class WgteamsRelationsHandler extends XoopsPersistableObjectHandler
+class RelationsHandler extends XoopsPersistableObjectHandler
 {
     /**
     * @var mixed
@@ -289,7 +289,7 @@ class WgteamsRelationsHandler extends XoopsPersistableObjectHandler
     public function __construct(XoopsDatabase $db)
     {
         parent::__construct($db, 'wgteams_relations', 'wgteamsrelations', 'rel_id', 'rel_team_id');
-        $this->wgteams = WgteamsHelper::getInstance();
+        $this->wgteams = Helper::getInstance();
     }
 
     /**

@@ -22,9 +22,9 @@
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
- * Class WgteamsMembers
+ * Class Members
  */
-class WgteamsMembers extends XoopsObject
+class Members extends XoopsObject
 {
     /**
     * @var mixed
@@ -34,11 +34,11 @@ class WgteamsMembers extends XoopsObject
     /**
      * Constructor
      *
-     * WgteamsMembers constructor.
+     * Members constructor.
      */
     public function __construct()
     {
-        $this->wgteams = WgteamsHelper::getInstance();
+        $this->wgteams = Helper::getInstance();
         $this->initVar('member_id', XOBJ_DTYPE_INT);
         $this->initVar('member_firstname', XOBJ_DTYPE_TXTBOX);
         $this->initVar('member_lastname', XOBJ_DTYPE_TXTBOX);
@@ -155,7 +155,7 @@ class WgteamsMembers extends XoopsObject
      */
     public function getValuesMember($keys = null, $format = null, $maxDepth = null)
     {
-        $wgteams            = WgteamsHelper::getInstance();
+        $wgteams            = Helper::getInstance();
 		$ret                = $this->getValues($keys, $format, $maxDepth);
         $ret['id']          = $this->getVar('member_id');
         $ret['firstname']   = $this->getVar('member_firstname');
@@ -189,10 +189,10 @@ class WgteamsMembers extends XoopsObject
 }
 
 /**
- * Class Object Handler WgteamsMembers
+ * Class Object Handler Members
  */
 
-class WgteamsMembersHandler extends XoopsPersistableObjectHandler
+class MembersHandler extends XoopsPersistableObjectHandler
 {
     /**
     * @var mixed
@@ -207,7 +207,7 @@ class WgteamsMembersHandler extends XoopsPersistableObjectHandler
     public function __construct(XoopsDatabase $db)
     {
         parent::__construct($db, 'wgteams_members', 'wgteamsmembers', 'member_id', 'member_firstname');
-        $this->wgteams = WgteamsHelper::getInstance();
+        $this->wgteams = Helper::getInstance();
     }
 
     /**

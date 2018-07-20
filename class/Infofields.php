@@ -23,9 +23,9 @@ defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 
 /**
- * Class WgteamsInfofields
+ * Class Infofields
  */
-class WgteamsInfofields extends XoopsObject
+class Infofields extends XoopsObject
 {
     /**
     * @var mixed
@@ -39,7 +39,7 @@ class WgteamsInfofields extends XoopsObject
      */
     public function __construct()
     {
-        $this->wgteams = WgteamsHelper::getInstance();
+        $this->wgteams = Helper::getInstance();
         $this->initVar('infofield_id', XOBJ_DTYPE_INT);
         $this->initVar('infofield_name', XOBJ_DTYPE_TXTBOX);
         $this->initVar('infofield_submitter', XOBJ_DTYPE_INT);
@@ -133,9 +133,9 @@ class WgteamsInfofields extends XoopsObject
 }
 
 /**
- * Class WgteamsInfofieldsHandler
+ * Class InfofieldsHandler
  */
-class WgteamsInfofieldsHandler extends XoopsPersistableObjectHandler
+class InfofieldsHandler extends XoopsPersistableObjectHandler
 {
     /**
     * @var mixed
@@ -150,7 +150,7 @@ class WgteamsInfofieldsHandler extends XoopsPersistableObjectHandler
     public function __construct(XoopsDatabase $db)
     {
         parent::__construct($db, 'wgteams_infofields', 'wgteamsinfofields', 'infofield_id', 'infofield_name');
-        $this->wgteams = WgteamsHelper::getInstance();
+        $this->wgteams = Helper::getInstance();
     }
 
     /**

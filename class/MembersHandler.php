@@ -27,7 +27,7 @@ defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 
 /**
- * Class Object Handler WgteamsMembers
+ * Class Object Handler Members
  */
 class MembersHandler extends \XoopsPersistableObjectHandler
 {

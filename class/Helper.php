@@ -22,9 +22,9 @@
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
- * Class WgteamsHelper
+ * Class Helper
  */
-class WgteamsHelper
+class Helper
 {
     /**
      * @var string

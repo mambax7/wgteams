@@ -27,7 +27,7 @@ defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 
 /**
- * Class Object Handler WgteamsRelations
+ * Class Object Handler Relations
  */
 class RelationsHandler extends \XoopsPersistableObjectHandler
 {
