@@ -88,7 +88,7 @@ class PersonsHandler extends \XoopsPersistableObjectHandler
      * @param  \CriteriaElement $criteria {@link CriteriaElement} to match
      * @return array  of object IDs
      */
-    public function &getIds(\CriteriaElement $criteria)
+    public function &getIds(CriteriaElement $criteria)
     {
         return parent::getIds($criteria);
     }
