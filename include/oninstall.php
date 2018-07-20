@@ -28,7 +28,7 @@ use XoopsModules\Wgteams;
  */
 function xoops_module_pre_install_wgteams(\XoopsModule $module)
 {
-    include  dirname(__DIR__) . '/preloads/autoloader.php';
+    require dirname(__DIR__) . '/preloads/autoloader.php';
     /** @var Wgteams\Utility $utility */
     $utility = new \XoopsModules\Wgteams\Utility();
     $xoopsSuccess = $utility::checkVerXoops($module);
@@ -57,7 +57,7 @@ function xoops_module_install_wgteams(\XoopsModule $module)
     require_once   dirname(__DIR__) . '/include/config.php';
 
     $moduleDirName = basename(dirname(__DIR__));
-
+    /** @var Wgteams\Helper $helper */
     $helper       = Wgteams\Helper::getInstance();
     $utility      = new Wgteams\Utility();
     $configurator = new Wgteams\Common\Configurator();

@@ -48,7 +48,7 @@ $modversion = [
     'manual'              => 'link to manual file',
     'manual_file'         => XOOPS_URL . '/modules/wgteams/docs/install.txt',
     'min_php'             => '5.5',
-    'min_xoops'           => '2.5.7',
+    'min_xoops'           => '2.5.9',
     'min_admin'           => '1.1',
     'min_db'              => ['mysql' => '5.0.7', 'mysqli' => '5.0.7'],
     'image'               => 'assets/images/wgteams_logo.png',
@@ -125,8 +125,9 @@ if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['d
 
     $s = 0;
 
-    $wgteams      = Wgteams\Helper::getInstance();
-//    $teamsHandler =  $wgteams->getHandler('TeamsHandler');
+    /** @var Wgteams\Helper $helper */
+    $helper    = Wgteams\Helper::getInstance();
+//    $teamsHandler =  $helper->getHandler('TeamsHandler');
     $db = \XoopsDatabaseFactory::getDatabaseConnection();
     $teamsHandler      = new Wgteams\TeamsHandler($db);
 

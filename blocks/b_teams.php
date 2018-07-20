@@ -19,6 +19,9 @@
  * @author          Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
  * @version         $Id: 1.0 teams.php 1 Sun 2015/12/27 23:18:00Z Goffy - Wedega $
  */
+
+use XoopsModules\Wgteams;
+
 require_once XOOPS_ROOT_PATH . '/modules/wgteams/include/common.php';
 
 // Function show block
@@ -34,8 +37,9 @@ function b_wgteams_teams_show($options)
 
     $GLOBALS['xoopsTpl']->assign('wgteams_teams_upload_url', WGTEAMS_UPLOAD_URL . '/teams/images/');
 
-    $wgteams      = Wgteams\Helper::getInstance();
-    $teamsHandler = $wgteams->getHandler('teams');
+    /** @var Wgteams\Helper $helper */
+    $helper    = Wgteams\Helper::getInstance();
+    $teamsHandler = $helper->getHandler('Teams');
 
     $crit_teams = new \CriteriaCompo();
     $crit_teams->add(new \Criteria('team_online', '1'));

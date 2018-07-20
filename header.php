@@ -22,8 +22,8 @@
 
 use XoopsModules\Wgteams;
 
-include dirname(dirname(__DIR__)) . '/mainfile.php';
-include __DIR__ . '/include/common.php';
+require dirname(dirname(__DIR__)) . '/mainfile.php';
+require __DIR__   . '/include/common.php';
 $dirname = basename(__DIR__);
 // Breadcrumbs
 $xoBreadcrumbs   = [];

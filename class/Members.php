@@ -33,7 +33,7 @@ class Members extends \XoopsObject
     /**
      * @var mixed
      */
-    private $wgteams = null;
+    private $helper = null;
 
     /**
      * Constructor
@@ -42,7 +42,8 @@ class Members extends \XoopsObject
      */
     public function __construct()
     {
-        $this->wgteams = Wgteams\Helper::getInstance();
+        /** @var Wgteams\Helper $this->helper */
+        $this->helper = Wgteams\Helper::getInstance();
         $this->initVar('member_id', XOBJ_DTYPE_INT);
         $this->initVar('member_firstname', XOBJ_DTYPE_TXTBOX);
         $this->initVar('member_lastname', XOBJ_DTYPE_TXTBOX);
@@ -89,7 +90,7 @@ class Members extends \XoopsObject
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // member handler
-        //$membersHandler = $this->wgteams->getHandler('members');
+        //$membersHandler = $this->helper->getHandler('members');
         // Form Text memberFirstname
         $form->addElement(new \XoopsFormText(_AM_WGTEAMS_MEMBER_FIRSTNAME, 'member_firstname', 50, 255, $this->getVar('member_firstname')), true);
         // Form Text memberLastname
@@ -104,7 +105,7 @@ class Members extends \XoopsObject
         $editor_configs['cols']   = 40;
         $editor_configs['width']  = '100%';
         $editor_configs['height'] = '400px';
-        $editor_configs['editor'] = $this->wgteams->getConfig('wgteams_editor');
+        $editor_configs['editor'] = $this->helper->getConfig('wgteams_editor');
         $form->addElement(new \XoopsFormEditor(_AM_WGTEAMS_MEMBER_ADDRESS, 'member_address', $editor_configs));
         // Form Text Area member_phone
         $editor_configs           = [];
@@ -114,7 +115,7 @@ class Members extends \XoopsObject
         $editor_configs['cols']   = 40;
         $editor_configs['width']  = '100%';
         $editor_configs['height'] = '400px';
-        $editor_configs['editor'] = $this->wgteams->getConfig('wgteams_editor');
+        $editor_configs['editor'] = $this->helper->getConfig('wgteams_editor');
         $form->addElement(new \XoopsFormEditor(_AM_WGTEAMS_MEMBER_PHONE, 'member_phone', $editor_configs));
         // Form Text memberEmail
         $form->addElement(new \XoopsFormText(_AM_WGTEAMS_MEMBER_EMAIL, 'member_email', 50, 255, $this->getVar('member_email')));
@@ -127,15 +128,15 @@ class Members extends \XoopsObject
         $imageSelect = new \XoopsFormSelect(_AM_WGTEAMS_FORM_IMAGE_EXIST, 'member_image', $memberImage, 5);
         $imageArray  = \XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
         foreach ($imageArray as $image) {
-            $imageSelect->addOption((string)($image), $image);
+            $imageSelect->addOption((string)$image, $image);
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"image2\", \"member_image\", \"" . $imageDirectory . '", "", "' . XOOPS_URL . "\")'");
         $imageTray->addElement($imageSelect, false);
         $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . XOOPS_URL . '/' . $imageDirectory . '/' . $memberImage . "' name='image2' id='image2' alt='' style='max-width:100px;'>"));
         // Form File
         $fileSelectTray = new \XoopsFormElementTray('', '<br>');
-        $fileSelectTray->addElement(new \XoopsFormFile(_AM_WGTEAMS_FORM_UPLOAD_IMG, 'attachedfile', $this->wgteams->getConfig('wgteams_img_maxsize')));
-        $fileSelectTray->addElement(new \XoopsFormLabel(_AM_WGTEAMS_MAX_FILESIZE . $this->wgteams->getConfig('wgteams_img_maxsize')));
+        $fileSelectTray->addElement(new \XoopsFormFile(_AM_WGTEAMS_FORM_UPLOAD_IMG, 'attachedfile', $this->helper->getConfig('wgteams_img_maxsize')));
+        $fileSelectTray->addElement(new \XoopsFormLabel(_AM_WGTEAMS_MAX_FILESIZE . $this->helper->getConfig('wgteams_img_maxsize')));
         $imageTray->addElement($fileSelectTray);
         $form->addElement($imageTray);
         // Form Select User
@@ -159,13 +160,14 @@ class Members extends \XoopsObject
      */
     public function getValuesMember($keys = null, $format = null, $maxDepth = null)
     {
-        $wgteams            = Wgteams\Helper::getInstance();
+        /** @var Wgteams\Helper $this->helper */
+        $helper            = Wgteams\Helper::getInstance();
         $ret                = $this->getValues($keys, $format, $maxDepth);
         $ret['id']          = $this->getVar('member_id');
         $ret['firstname']   = $this->getVar('member_firstname');
         $ret['lastname']    = $this->getVar('member_lastname');
         $ret['title']       = $this->getVar('member_title');
-        $ret['address']     = $wgteams->truncateHtml($this->getVar('member_address', 'n'));
+        $ret['address']     = $helper->truncateHtml($this->getVar('member_address', 'n'));
         $ret['phone']       = strip_tags($this->getVar('member_phone'));
         $ret['email']       = $this->getVar('member_email');
         $ret['image']       = $this->getVar('member_image');

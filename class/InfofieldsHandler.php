@@ -34,7 +34,7 @@ class InfofieldsHandler extends \XoopsPersistableObjectHandler
     /**
      * @var mixed
      */
-    private $wgteams = null;
+    private $helper = null;
 
     /**
      * Constructor
@@ -44,7 +44,8 @@ class InfofieldsHandler extends \XoopsPersistableObjectHandler
     public function __construct($db)
     {
         parent::__construct($db, 'wgteams_infofields', Infofields::class, 'infofield_id', 'infofield_name');
-        $this->wgteams = Wgteams\Helper::getInstance();
+        /** @var Wgteams\Helper $this->helper */
+        $this->helper = Wgteams\Helper::getInstance();
     }
 
     /**

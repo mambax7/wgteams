@@ -85,8 +85,9 @@ function wgteamsGetTeamDetails(&$teamsAll, $show_descr = true)
     // Get All Teams
     global $xoopsTpl, $xoTheme;
 
-    $wgteams      = Wgteams\Helper::getInstance();
-    $teamsHandler = $wgteams->getHandler('teams');
+    /** @var Wgteams\Helper $helper */
+    $helper      = Wgteams\Helper::getInstance();
+    $teamsHandler = $helper->getHandler('Teams');
 
     xoops_loadLanguage('main', WGTEAMS_DIRNAME);
 
@@ -130,8 +131,8 @@ function wgteamsGetTeamMemberDetails(&$teamsAll)
 {
     // Get All Teams
     global $xoopsTpl, $xoTheme;
-
-    $wgteams           = Wgteams\Helper::getInstance();
+    /** @var Wgteams\Helper $helper */
+    $helper           = Wgteams\Helper::getInstance();
     $db = \XoopsDatabaseFactory::getDatabaseConnection();
     $teamsHandler      = new Wgteams\TeamsHandler($db);
     $membersHandler    = new Wgteams\MembersHandler($db);
@@ -156,7 +157,7 @@ function wgteamsGetTeamMemberDetails(&$teamsAll)
         $team_tablestyle   = ('default' === $teamsAll[$i]->getVar('team_tablestyle')) ? '' : $teamsAll[$i]->getVar('team_tablestyle');
         $team_imagestyle   = ('default' === $teamsAll[$i]->getVar('team_imagestyle')) ? '' : $teamsAll[$i]->getVar('team_imagestyle');
         $team_displaystyle = $teamsAll[$i]->getVar('team_displaystyle');
-        $member_labels     = 1 == $wgteams->getConfig('wgteams_labels') ? true : false;
+        $member_labels     = 1 == $helper->getConfig('wgteams_labels') ? true : false;
 
         $crit_rels = new \CriteriaCompo();
         $crit_rels->add(new \Criteria('rel_team_id', $team_id));

@@ -23,7 +23,7 @@
 
 use Xmf\Request;
 
-include __DIR__ . '/header.php';
+require __DIR__   . '/header.php';
 // It recovered the value of argument op in URL$
 $op = Request::getString('op', 'list');
 // Request infofield_id
@@ -33,7 +33,7 @@ switch ($op) {
     case 'list':
     default:
         $start        = Request::getInt('start', 0);
-        $limit        = Request::getInt('limit', $wgteams->getConfig('adminpager'));
+        $limit        = Request::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wgteams_admin_infofields.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('infofields.php'));
         $adminObject->addItemButton(_AM_WGTEAMS_INFOFIELD_ADD, 'infofields.php?op=new', 'add');
@@ -111,7 +111,7 @@ switch ($op) {
 
     case 'delete':
         $infofieldsObj = $infofieldsHandler->get($addField_id);
-        if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
+        if (\Xmf\Request::hasVar('ok', 'REQUEST') && 1 == $_REQUEST['ok']) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 redirect_header('infofields.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
@@ -126,4 +126,4 @@ switch ($op) {
         break;
 }
 
-include __DIR__ . '/footer.php';
+require __DIR__   . '/footer.php';

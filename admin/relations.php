@@ -23,7 +23,7 @@
 
 use Xmf\Request;
 
-include __DIR__ . '/header.php';
+require __DIR__   . '/header.php';
 // It recovered the value of argument op in URL$
 $op = Request::getString('op', 'list');
 // Request rel_id
@@ -34,7 +34,7 @@ switch ($op) {
     default:
         $GLOBALS['xoTheme']->addScript(WGTEAMS_URL . '/assets/js/sortable-relations.js');
         $start        = Request::getInt('start', 0);
-        $limit        = Request::getInt('limit', $wgteams->getConfig('adminpager'));
+        $limit        = Request::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wgteams_admin_relations.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('relations.php'));
         $adminObject->addItemButton(_AM_WGTEAMS_RELATION_ADD, 'relations.php?op=new', 'add');
@@ -147,7 +147,7 @@ switch ($op) {
 
     case 'delete':
         $relationsObj = $relationsHandler->get($relId);
-        if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
+        if (\Xmf\Request::hasVar('ok', 'REQUEST') && 1 == $_REQUEST['ok']) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 redirect_header('relations.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
@@ -172,4 +172,4 @@ switch ($op) {
 
 }
 
-include __DIR__ . '/footer.php';
+require __DIR__   . '/footer.php';

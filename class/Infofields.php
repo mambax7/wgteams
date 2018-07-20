@@ -33,7 +33,7 @@ class Infofields extends \XoopsObject
     /**
      * @var mixed
      */
-    private $wgteams = null;
+    private $helper = null;
 
     /**
      * Constructor
@@ -42,7 +42,8 @@ class Infofields extends \XoopsObject
      */
     public function __construct()
     {
-        $this->wgteams = Wgteams\Helper::getInstance();
+        /** @var Wgteams\Helper $this->helper */
+        $this->helper = Wgteams\Helper::getInstance();
         $this->initVar('infofield_id', XOBJ_DTYPE_INT);
         $this->initVar('infofield_name', XOBJ_DTYPE_TXTBOX);
         $this->initVar('infofield_submitter', XOBJ_DTYPE_INT);
@@ -85,7 +86,7 @@ class Infofields extends \XoopsObject
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Infofields handler
-        //$infofieldsHandler = $this->wgteams->getHandler('infofields');
+        //$infofieldsHandler = $this->helper->getHandler('Infofields');
         // Form Text AddField_name
         $form->addElement(new \XoopsFormText(_AM_WGTEAMS_INFOFIELD_NAME, 'infofield_name', 50, 255, $this->getVar('infofield_name')), true);
         // Form Select User

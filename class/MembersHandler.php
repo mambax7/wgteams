@@ -34,7 +34,7 @@ class MembersHandler extends \XoopsPersistableObjectHandler
     /**
      * @var mixed
      */
-    private $wgteams = null;
+    private $helper = null;
 
     /**
      * Constructor
@@ -44,7 +44,8 @@ class MembersHandler extends \XoopsPersistableObjectHandler
     public function __construct($db)
     {
         parent::__construct($db, 'wgteams_members', Members::class, 'member_id', 'member_firstname');
-        $this->wgteams = Wgteams\Helper::getInstance();
+        /** @var \XoopsModules\Wgteams\Helper $this->helper */
+        $this->helper = \XoopsModules\Wgteams\Helper::getInstance();
     }
 
     /**

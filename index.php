@@ -24,16 +24,16 @@
 use Xmf\Request;
 use XoopsModules\Wgteams;
 
-include __DIR__ . '/header.php';
+require __DIR__   . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgteams_teams.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
-
-$wgteams           = Wgteams\Helper::getInstance();
-$startpage = $wgteams->getConfig('startpage', 0)[0];
+/** @var Wgteams\Helper $helper */
+$helper    = Wgteams\Helper::getInstance();
+$startpage = $helper->getConfig('startpage', 0)[0];
 
 $team_id = Request::getInt('team_id', 0);
 $start   = Request::getInt('start', 0);
-$limit   = Request::getInt('limit', $wgteams->getConfig('userpager'));
+$limit   = Request::getInt('limit', $helper->getConfig('userpager'));
 
 // Define Stylesheet
 $xoTheme->addStylesheet($style);
@@ -85,7 +85,7 @@ if ($teamsCount > $limit) {
     $GLOBALS['xoopsTpl']->assign('pagenav', $nav->renderNav(4));
 }
 // Breadcrumbs
-if (1 == $wgteams->getConfig('wgteams_showbreadcrumbs')) {
+if (1 == $helper->getConfig('wgteams_showbreadcrumbs')) {
     $xoBreadcrumbs[] = ['title' => _MA_WGTEAMS_TEAMS, 'link' => WGTEAMS_URL . '/index.php'];
     if ($team_id > 0 && '' === !$team_name) {
         $xoBreadcrumbs[] = ['title' => $team_name];
@@ -93,11 +93,11 @@ if (1 == $wgteams->getConfig('wgteams_showbreadcrumbs')) {
     $GLOBALS['xoopsTpl']->assign('showbreadcrumbs', '1');
 }
 // keywords
-wgteamsMetaKeywords($wgteams->getConfig('keywords') . ', ' . implode(', ', $keywords));
+wgteamsMetaKeywords($helper->getConfig('keywords') . ', ' . implode(', ', $keywords));
 unset($keywords);
 // description
 wgteamsMetaDescription(_MA_WGTEAMS_TEAM_DESC);
 
 $GLOBALS['xoopsTpl']->assign('wgteams_url_index', WGTEAMS_URL . '/index.php');
 $GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGTEAMS_URL . '/index.php');
-include __DIR__ . '/footer.php';
+require __DIR__   . '/footer.php';

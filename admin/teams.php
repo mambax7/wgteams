@@ -23,7 +23,7 @@
 
 use Xmf\Request;
 
-include __DIR__ . '/header.php';
+require __DIR__   . '/header.php';
 // It recovered the value of argument op in URL$
 $op = Request::getString('op', 'list');
 // Request team_id
@@ -34,7 +34,7 @@ switch ($op) {
     default:
         $GLOBALS['xoTheme']->addScript(WGTEAMS_URL . '/assets/js/sortable-teams.js');
         $start        = Request::getInt('start', 0);
-        $limit        = Request::getInt('limit', $wgteams->getConfig('adminpager'));
+        $limit        = Request::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wgteams_admin_teams.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('teams.php'));
         $adminObject->addItemButton(_AM_WGTEAMS_TEAM_ADD, 'teams.php?op=new', 'add');
@@ -104,7 +104,7 @@ switch ($op) {
         $teamsObj->setVar('team_descr', $_POST['team_descr']);
         // Set Var team_image
         require_once XOOPS_ROOT_PATH . '/class/uploader.php';
-        $uploader = new \XoopsMediaUploader(WGTEAMS_UPLOAD_PATH . '/teams/images', $wgteams->getConfig('wgteams_img_mimetypes'), $wgteams->getConfig('wgteams_img_maxsize'), null, null);
+        $uploader = new \XoopsMediaUploader(WGTEAMS_UPLOAD_PATH . '/teams/images', $helper->getConfig('wgteams_img_mimetypes'), $helper->getConfig('wgteams_img_maxsize'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $_FILES['attachedfile']['name']);
             $imgName   = str_replace(' ', '', $_POST['team_name']) . '.' . $extension;
@@ -159,7 +159,7 @@ switch ($op) {
 
     case 'delete':
         $teamsObj = $teamsHandler->get($teamId);
-        if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
+        if (\Xmf\Request::hasVar('ok', 'REQUEST') && 1 == $_REQUEST['ok']) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 redirect_header('teams.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
@@ -201,4 +201,4 @@ switch ($op) {
 
 }
 
-include __DIR__ . '/footer.php';
+require __DIR__   . '/footer.php';

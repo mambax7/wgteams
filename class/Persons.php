@@ -33,7 +33,7 @@ class Persons extends \XoopsObject
     /*
     * @var mixed
     */
-    private $wgteams = null;
+    private $helper = null;
 
     /*
      * Constructor
@@ -42,7 +42,8 @@ class Persons extends \XoopsObject
      */
     public function __construct()
     {
-        $this->wgteams = Wgteams\Helper::getInstance();
+        /** @var Wgteams\Helper $this->helper */
+        $this->helper = Wgteams\Helper::getInstance();
         $this->initVar('person_id', XOBJ_DTYPE_INT);
         $this->initVar('person_firstname', XOBJ_DTYPE_TXTBOX);
         $this->initVar('person_lastname', XOBJ_DTYPE_TXTBOX);
@@ -88,7 +89,7 @@ class Persons extends \XoopsObject
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Persons handler
-        //$personsHandler = $this->wgteams->getHandler('persons');
+        //$personsHandler = $this->helper->getHandler('Persons');
         // Form Text PersonFirstname
         $form->addElement(new \XoopsFormText(_AM_WGTEAMS_PERSON_FIRSTNAME, 'person_firstname', 50, 255, $this->getVar('person_firstname')), true);
         // Form Text PersonLastname
@@ -110,14 +111,14 @@ class Persons extends \XoopsObject
         $imageSelect = new \XoopsFormSelect(_AM_WGTEAMS_FORM_IMAGE_EXIST, 'person_image', $personImage, 5);
         $imageArray  = \XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
         foreach ($imageArray as $image) {
-            $imageSelect->addOption((string)($image), $image);
+            $imageSelect->addOption((string)$image, $image);
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"image2\", \"person_image\", \"" . $imageDirectory . '", "", "' . XOOPS_URL . "\")'");
         $imageTray->addElement($imageSelect, false);
         $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . XOOPS_URL . '/' . $imageDirectory . '/' . $personImage . "' name='image2' id='image2' alt='' style='max-width:100px'>"));
         // Form File
         $fileSelectTray = new \XoopsFormElementTray('', '<br>');
-        $fileSelectTray->addElement(new \XoopsFormFile(_AM_WGTEAMS_FORM_UPLOAD_IMG, 'attachedfile', $this->wgteams->getConfig('maxsize')));
+        $fileSelectTray->addElement(new \XoopsFormFile(_AM_WGTEAMS_FORM_UPLOAD_IMG, 'attachedfile', $this->helper->getConfig('maxsize')));
         $fileSelectTray->addElement(new \XoopsFormLabel(''));
         $imageTray->addElement($fileSelectTray);
         $form->addElement($imageTray);

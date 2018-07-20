@@ -22,7 +22,7 @@
 
 use Xmf\Request;
 
-include __DIR__ . '/header.php';
+require __DIR__   . '/header.php';
 // It recovered the value of argument op in URL$
 $op = Request::getString('op', 'list');
 // Request person_id
@@ -32,7 +32,7 @@ switch ($op) {
     case 'list':
     default:
         $start        = Request::getInt('start', 0);
-        $limit        = Request::getInt('limit', $wgteams->getConfig('adminpager'));
+        $limit        = Request::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wgteams_admin_persons.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation(basename(__FILE__)));
         $adminObject->addItemButton(_AM_WGTEAMS_PERSON_ADD, 'persons.php?op=new', 'add');
@@ -94,7 +94,7 @@ switch ($op) {
         $personsObj->setVar('person_email', $_POST['person_email']);
         // Set Var person_image
         require_once XOOPS_ROOT_PATH . '/class/uploader.php';
-        $uploader = new \XoopsMediaUploader(WGTEAMS_UPLOAD_PATH . '/persons/images', $wgteams->getConfig('mimetypes'), $wgteams->getConfig('maxsize'), null, null);
+        $uploader = new \XoopsMediaUploader(WGTEAMS_UPLOAD_PATH . '/persons/images', $helper->getConfig('mimetypes'), $helper->getConfig('maxsize'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $_FILES['attachedfile']['name']);
             $imgName   = str_replace(' ', '', $_POST['person_firstname']) . '.' . $extension;
@@ -137,7 +137,7 @@ switch ($op) {
 
     case 'delete':
         $personsObj = $personsHandler->get($personId);
-        if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
+        if (\Xmf\Request::hasVar('ok', 'REQUEST') && 1 == $_REQUEST['ok']) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 redirect_header('persons.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
@@ -152,4 +152,4 @@ switch ($op) {
         break;
 }
 
-include __DIR__ . '/footer.php';
+require __DIR__   . '/footer.php';

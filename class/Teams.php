@@ -33,7 +33,7 @@ class Teams extends \XoopsObject
     /**
      * @var mixed
      */
-    private $wgteams = null;
+    private $helper = null;
 
     /**
      * Constructor
@@ -42,7 +42,8 @@ class Teams extends \XoopsObject
      */
     public function __construct()
     {
-        $this->wgteams = Wgteams\Helper::getInstance();
+        /** @var \XoopsModules\Wgteams\Helper $this->helper */
+        $this->helper = \XoopsModules\Wgteams\Helper::getInstance();
         $this->initVar('team_id', XOBJ_DTYPE_INT);
         $this->initVar('team_name', XOBJ_DTYPE_TXTBOX);
         $this->initVar('team_descr', XOBJ_DTYPE_TXTAREA);
@@ -92,7 +93,7 @@ class Teams extends \XoopsObject
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Teams handler
-        //$teamsHandler = $this->wgteams->getHandler('teams');
+        //$teamsHandler = $this->helper->getHandler('Teams');
         // Form Text TeamName
         $form->addElement(new \XoopsFormText(_AM_WGTEAMS_TEAM_NAME, 'team_name', 50, 255, $this->getVar('team_name')), true);
         // Form Text Area team_descr
@@ -103,7 +104,7 @@ class Teams extends \XoopsObject
         $editor_configs['cols']   = 40;
         $editor_configs['width']  = '100%';
         $editor_configs['height'] = '400px';
-        $editor_configs['editor'] = $this->wgteams->getConfig('wgteams_editor');
+        $editor_configs['editor'] = $this->helper->getConfig('wgteams_editor');
         $form->addElement(new \XoopsFormEditor(_AM_WGTEAMS_TEAM_DESCR, 'team_descr', $editor_configs));
         // Form Upload Image
         $getTeamImage   = $this->getVar('team_image');
@@ -114,15 +115,15 @@ class Teams extends \XoopsObject
         $imageSelect = new \XoopsFormSelect(_AM_WGTEAMS_FORM_IMAGE_EXIST, 'team_image', $teamImage, 5);
         $imageArray  = \XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
         foreach ($imageArray as $image) {
-            $imageSelect->addOption((string)($image), $image);
+            $imageSelect->addOption((string)$image, $image);
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"image2\", \"team_image\", \"" . $imageDirectory . '", "", "' . XOOPS_URL . "\")'");
         $imageTray->addElement($imageSelect, false);
         $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . XOOPS_URL . '/' . $imageDirectory . '/' . $teamImage . "' name='image2' id='image2' alt='' style='max-width:100px;'>"));
         // Form File
         $fileSelectTray = new \XoopsFormElementTray('', '<br>');
-        $fileSelectTray->addElement(new \XoopsFormFile(_AM_WGTEAMS_FORM_UPLOAD_IMG, 'attachedfile', $this->wgteams->getConfig('wgteams_img_maxsize')));
-        $fileSelectTray->addElement(new \XoopsFormLabel(_AM_WGTEAMS_MAX_FILESIZE . $this->wgteams->getConfig('wgteams_img_maxsize')));
+        $fileSelectTray->addElement(new \XoopsFormFile(_AM_WGTEAMS_FORM_UPLOAD_IMG, 'attachedfile', $this->helper->getConfig('wgteams_img_maxsize')));
+        $fileSelectTray->addElement(new \XoopsFormLabel(_AM_WGTEAMS_MAX_FILESIZE . $this->helper->getConfig('wgteams_img_maxsize')));
         $imageTray->addElement($fileSelectTray);
         $form->addElement($imageTray);
         // Form Text TeamNb_cols
@@ -183,11 +184,12 @@ class Teams extends \XoopsObject
      */
     public function getValuesTeams($keys = null, $format = null, $maxDepth = null)
     {
-        $wgteams             = Wgteams\Helper::getInstance();
+        /** @var Wgteams\Helper $helper */
+        $helper             = Wgteams\Helper::getInstance();
         $ret                 = $this->getValues($keys, $format, $maxDepth);
         $ret['id']           = $this->getVar('team_id');
         $ret['name']         = strip_tags($this->getVar('team_name'));
-        $ret['descr']        = $wgteams->truncateHtml($this->getVar('team_descr', 'n'));
+        $ret['descr']        = $helper->truncateHtml($this->getVar('team_descr', 'n'));
         $ret['image']        = $this->getVar('team_image');
         $ret['nb_cols']      = $this->getVar('team_nb_cols');
         $ret['tablestyle']   = $this->getVar('team_tablestyle');

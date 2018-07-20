@@ -23,7 +23,7 @@
 
 use XoopsModules\Wgteams;
 
-include dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
+require dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
 $thisPath = dirname(__DIR__);
 require_once $thisPath . '/include/common.php';
 $pathIcon16      = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
@@ -33,12 +33,13 @@ $pathModuleAdmin = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
 $pathModIcon16 = $GLOBALS['xoopsModule']->getInfo('modicons16');
 $pathModIcon32 = $GLOBALS['xoopsModule']->getInfo('modicons32');
 // Get instance of module
-$wgteams           = Wgteams\Helper::getInstance();
+/** @var Wgteams\Helper $helper */
+$helper    = Wgteams\Helper::getInstance();
 $db = \XoopsDatabaseFactory::getDatabaseConnection();
-$teamsHandler      = new Wgteams\TeamsHandler($db);//$wgteams->getHandler('teams');
-$membersHandler    = new Wgteams\MembersHandler($db);//$wgteams->getHandler('members');
-$relationsHandler  = new Wgteams\RelationsHandler($db);//$wgteams->getHandler('relations');
-$infofieldsHandler = new Wgteams\InfofieldsHandler($db);//$wgteams->getHandler('infofields');
+$teamsHandler      = new Wgteams\TeamsHandler($db);//$helper->getHandler('Teams');
+$membersHandler    = new Wgteams\MembersHandler($db);//$helper->getHandler('Members');
+$relationsHandler  = new Wgteams\RelationsHandler($db);//$helper->getHandler('Relations');
+$infofieldsHandler = new Wgteams\InfofieldsHandler($db);//$helper->getHandler('Infofields');
 
 //
 $myts = \MyTextSanitizer::getInstance();
@@ -54,8 +55,8 @@ $xoopsTpl->assign('pathModIcon16', $pathModIcon16);
 $xoopsTpl->assign('pathModIcon32', $pathModIcon32);
 
 //Load languages
-$wgteams->loadLanguage('admin');
-$wgteams->loadLanguage('modinfo');
+$helper->loadLanguage('admin');
+$helper->loadLanguage('modinfo');
 // Local admin menu class
 //if (file_exists($GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php'))) {
 //    require_once $GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php');

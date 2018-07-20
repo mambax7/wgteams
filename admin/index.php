@@ -19,7 +19,7 @@
  * @author          Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
  * @version         $Id: 1.0 index.php 1 Sun 2015/12/27 23:18:01Z Goffy - Wedega $
  */
-include __DIR__ . '/header.php';
+require __DIR__   . '/header.php';
 // Count elements
 $countTeams      = $teamsHandler->getCountTeams();
 $countMembers    = $membersHandler->getCountMembers();
@@ -47,4 +47,4 @@ foreach (array_keys($folder) as $i) {
 // Render Index
 $adminObject->displayNavigation(basename(__FILE__));
 $adminObject->displayIndex();
-include __DIR__ . '/footer.php';
+require __DIR__   . '/footer.php';

@@ -19,8 +19,8 @@
  * @author          Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
  * @version         $Id: 1.0 about.php 1 Sun 2015/12/27 23:18:01Z Goffy - Wedega $
  */
-include __DIR__ . '/header.php';
+require __DIR__   . '/header.php';
 $templateMain = 'wgteams_admin_about.tpl';
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('about.php'));
 $GLOBALS['xoopsTpl']->assign('about', $adminObject->displayAbout('', false));
-include __DIR__ . '/footer.php';
+require __DIR__   . '/footer.php';
